@@ -8,20 +8,28 @@
 #ifndef FRAC_H_
 #define FRAC_H_
 
-class frac {
+class frac
+{
 
 public:
 	frac(int n, int d);
 	frac(frac& f);
-	virtual ~frac();
+
+	~frac();
+
+	void  display() const;
+
+
 	int   getDinominator();
 	int   getNumerator();
-	frac& operator+(frac& f);
-	frac& operator-(frac& f);
-	frac& operator*(frac& f);
-	frac& operator/(frac& f);
+	void reduceFraction();
+
+	frac* operator+(frac& f);
+	frac* operator-(frac& f);
+	frac* operator*(frac& f);
+	frac* operator/(frac& f);
 private:
-	void getReducedForm();
+
 	int  getLcm(int dinominator1, int dinominator2);
 	int  getGcd(int a, int b);
 private:

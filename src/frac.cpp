@@ -7,9 +7,11 @@
 
 #include "frac.h"
 #include <iostream>
+#include <cmath>
 
 frac::frac(int n, int d):numerator(n), dinominator(d)
 {
+	this->reduceFraction();
 }
 frac::frac(frac& f): numerator(f.getNumerator()), dinominator(f.getDinominator())
 {
@@ -28,21 +30,73 @@ int frac::getDinominator()
 	return dinominator;
 }
 
-frac& frac::operator+(frac& f)
+void frac::display() const
+{
+	if(std::abs(dinominator)!=1)
+	{
+		if(numerator<dinominator)
+			std::cout<<numerator<<"/"<<dinominator<<std::endl;
+		else
+		{
+			std::cout<<numerator/dinominator<<" "<<numerator%dinominator<<"/"<<dinominator<<std::endl;
+		}
+	}
+	else
+		std::cout<<numerator<<std::endl;
+}
+
+void frac::reduceFraction()
+{
+	int gcdOfNumDinom = getGcd(numerator, dinominator);
+	if(gcdOfNumDinom!=1)
+	{
+		numerator/=gcdOfNumDinom;
+		dinominator/=gcdOfNumDinom;
+	}
+
+}
+frac* frac::operator+(frac& f)
 {
 	int resultNumerator, resultDinominator;
 
 	resultDinominator = getLcm(this->getDinominator(), f.getDinominator());
-
-//	std::cout<<"result dinom:"<<resultDinominator<<std::endl;
-//
-//	std::cout<<"f1:"<<this->getNumerator()<<"/"<<this->getDinominator()<<std::endl;
-//	std::cout<<"f2:"<<f.getNumerator()<<"/"<<f.getDinominator()<<std::endl;
-
 	resultNumerator   = this->getNumerator()*(resultDinominator/this->getDinominator()) +
 							f.getNumerator()*(resultDinominator/f.getDinominator());
+
 	frac *result = new frac(resultNumerator, resultDinominator);
-	return *result;
+	return result;
+}
+
+frac* frac::operator-(frac& f)
+{
+	int resultNumerator, resultDinominator;
+
+	resultDinominator = getLcm(this->getDinominator(), f.getDinominator());
+	resultNumerator   = this->getNumerator()*(resultDinominator/this->getDinominator()) -
+							f.getNumerator()*(resultDinominator/f.getDinominator());
+
+	frac *result = new frac(resultNumerator, resultDinominator);
+	return result;
+}
+frac* frac::operator*(frac& f)
+{
+	int resultNumerator, resultDinominator;
+
+	resultDinominator = this->getDinominator()*f.getDinominator();
+	resultNumerator   = this->getNumerator()*f.getNumerator();
+
+	frac *result = new frac(resultNumerator, resultDinominator);
+	return result;
+}
+frac* frac::operator/(frac& f)
+{
+	int resultNumerator, resultDinominator;
+
+	resultDinominator = this->getDinominator()*f.getNumerator();
+	resultNumerator   = this->getNumerator()*f.getDinominator();
+
+	frac *result = new frac(resultNumerator, resultDinominator);
+	return result;
 }
 
 int frac::getLcm(int a, int b)
