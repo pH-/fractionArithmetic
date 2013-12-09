@@ -25,7 +25,7 @@ int main() {
 //	std::cout<<frac2->getNumerator()<<std::endl<<frac2->getDinominator()<<std::endl;
 
 	frac *frac3 = new frac((*frac1)+(*frac2));
-	std::cout<<std::endl<<frac3->getNumerator()<<"/"<<frac3->getDinominator()<<std::endl;
+	std::cout<<"result:"<<std::endl<<frac3->getNumerator()<<"/"<<frac3->getDinominator()<<std::endl;
 
 	return 0;
 }
