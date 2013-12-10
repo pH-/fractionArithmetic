@@ -42,31 +42,32 @@ void expressionParser::shuntingYard()
 	std::string outputQueue;
 	std::stack<std::string> operatorStack;
 	int exprLen = inFixExpression.length();
+	char prevChar = ' ';
+	char currChar;
 	for(int i=0; i<exprLen; i++)
 	{
-		char currChar = inFixExpression[i];
+		currChar = inFixExpression[i];
 		if(isOperand(currChar))
 		{
+			if(isOperand(prevChar))
+				outputQueue.erase(outputQueue.length()-1,std::string::npos);
 			outputQueue.push_back(currChar);
 			outputQueue.push_back(' ');
 			expectedOperatorType = expressionParser::BINARY;
 		}
 		else if(isOperator(currChar))
 		{
-			if(!operatorStack.empty())
+			while(!operatorStack.empty() &&
+				  isOperator(operatorStack.top()[0]) &&
+				  getPrecedence(currChar)<=getPrecedence(operatorStack.top()[0]))
 			{
-				char operatorStackTop = operatorStack.top()[0];
-				while(!operatorStack.empty() &&
-					   isOperator(operatorStackTop) &&
-					   getPrecedence(currChar)<=getPrecedence(operatorStackTop))
-				{
-					outputQueue.push_back(operatorStackTop);
-					outputQueue.push_back(' ');
-					operatorStack.pop();
-					if(!operatorStack.empty())
-						operatorStackTop = operatorStack.top()[0];
-				}
+				outputQueue.push_back(operatorStack.top()[0]);
+				outputQueue.push_back(' ');
+				operatorStack.pop();
 			}
+
+			if(expectedOperatorType==expressionParser::UNARY && currChar=='-')
+				currChar = 'u';
 			std::string currCharStrObj(1,currChar);
 			operatorStack.push(currCharStrObj);
 		}
@@ -96,6 +97,7 @@ void expressionParser::shuntingYard()
 				operatorStack.pop();
 			}
 		}
+		prevChar = currChar;
 	}
 	while(!operatorStack.empty() && isOperator(operatorStack.top()[0]))
 	{
@@ -118,10 +120,7 @@ bool expressionParser::isOperand(char o)
 
 int expressionParser::getPrecedence(char o)
 {
-	if(expectedOperatorType == expressionParser::UNARY)
-		return 3;
-	else
-		return operatorPrecedence[o];
+	return operatorPrecedence[o];
 }
 //void expressionParser::displayFirstOperand() const
 //{
