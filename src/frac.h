@@ -8,7 +8,9 @@
 #ifndef FRAC_H_
 #define FRAC_H_
 
-class frac
+#include "operandClass.h"
+
+class frac : public operandClass
 {
 
 public:
@@ -24,10 +26,12 @@ public:
 	int   getNumerator();
 	void reduceFraction();
 
-	frac* operator+(frac& f);
-	frac* operator-(frac& f);
-	frac* operator*(frac& f);
-	frac* operator/(frac& f);
+	expression& operator+(expression& f);
+	expression& operator-(expression& f);
+	expression& operator*(expression& f);
+	expression& operator/(expression& f);
+	expression& operator-();
+
 private:
 
 	int  getLcm(int dinominator1, int dinominator2);

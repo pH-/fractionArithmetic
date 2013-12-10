@@ -12,6 +12,15 @@ class expression {
 public:
 	expression();
 	virtual ~expression();
+
+	virtual void display() const =0;
+
+	virtual expression& operator+(expression& op)=0;
+	virtual expression& operator-(expression& op)=0;
+	virtual expression& operator*(expression& op)=0;
+	virtual expression& operator/(expression& op)=0;
+	virtual expression& operator-()=0;
+
 };
 
 #endif /* EXPRESSION_H_ */

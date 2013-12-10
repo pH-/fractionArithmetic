@@ -15,12 +15,13 @@ public:
 	operandClass();
 	virtual ~operandClass();
 
-	virtual void display()=0;
+	virtual void display() const =0;
 
-	virtual operandClass& operator+(operandClass& op)=0;
-	virtual operandClass& operator-(operandClass& op)=0;
-	virtual operandClass& operator*(operandClass& op)=0;
-	virtual operandClass& operator/(operandClass& op)=0;
+	virtual expression& operator+(expression& op)=0;
+	virtual expression& operator-(expression& op)=0;
+	virtual expression& operator*(expression& op)=0;
+	virtual expression& operator/(expression& op)=0;
+	virtual expression& operator-()=0;
 };
 
 #endif /* TERMINAL_H_ */

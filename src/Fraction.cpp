@@ -10,6 +10,8 @@
 #include <string>
 #include "frac.h"
 #include "expressionParser.h"
+#include "expressionSolver.h"
+#include "expression.h"
 
 int main() {
 	std::string expr;
@@ -20,10 +22,9 @@ int main() {
 	expressionParser *expression = new expressionParser(expr);
 	std::cout<<expression->getPostFixedExpression()<<std::endl;
 
-
-
-//	std::cout<<"result:";
-//	result->display();
+	expressionSolver *solver = new expressionSolver(expression->getPostFixedExpression());
+	std::cout<<"result:";
+	solver->solveExpression()->display();
 
 	return 0;
 }

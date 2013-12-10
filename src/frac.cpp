@@ -11,6 +11,10 @@
 
 frac::frac(int n, int d):numerator(n), dinominator(d)
 {
+	if(dinominator==0)
+	{
+		std::cout<<"throw error"<<std::endl;
+	}
 	this->reduceFraction();
 }
 frac::frac(frac& f): numerator(f.getNumerator()), dinominator(f.getDinominator())
@@ -47,56 +51,83 @@ void frac::display() const
 
 void frac::reduceFraction()
 {
-	int gcdOfNumDinom = getGcd(numerator, dinominator);
+	bool negative = ((numerator<0 && dinominator>0)||(numerator>0 && dinominator<0));
+	bool positive = numerator<0 && dinominator<0;
+	int gcdOfNumDinom = getGcd(std::abs(numerator), std::abs(dinominator));
 	if(gcdOfNumDinom!=1)
 	{
 		numerator/=gcdOfNumDinom;
 		dinominator/=gcdOfNumDinom;
 	}
-
+	if(negative)
+	{
+		numerator = -std::abs(numerator);
+		dinominator = std::abs(dinominator);
+	}
+	if(positive)
+	{
+		numerator = std::abs(numerator);
+		dinominator = std::abs(dinominator);
+	}
 }
-frac* frac::operator+(frac& f)
+expression& frac::operator+(expression& secondOperand)
 {
+	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
-
-	resultDinominator = getLcm(this->getDinominator(), f.getDinominator());
+	resultDinominator = getLcm(this->getDinominator(), f->getDinominator());
 	resultNumerator   = this->getNumerator()*(resultDinominator/this->getDinominator()) +
-							f.getNumerator()*(resultDinominator/f.getDinominator());
+							f->getNumerator()*(resultDinominator/f->getDinominator());
 
-	frac *result = new frac(resultNumerator, resultDinominator);
-	return result;
+	numerator = resultNumerator;
+	dinominator = resultDinominator;
+	reduceFraction();
+	return *this;
 }
 
-frac* frac::operator-(frac& f)
+expression& frac::operator-(expression& secondOperand)
 {
+	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
-
-	resultDinominator = getLcm(this->getDinominator(), f.getDinominator());
+	resultDinominator = getLcm(this->getDinominator(), f->getDinominator());
 	resultNumerator   = this->getNumerator()*(resultDinominator/this->getDinominator()) -
-							f.getNumerator()*(resultDinominator/f.getDinominator());
+							f->getNumerator()*(resultDinominator/f->getDinominator());
 
-	frac *result = new frac(resultNumerator, resultDinominator);
-	return result;
+	numerator = resultNumerator;
+	dinominator = resultDinominator;
+	reduceFraction();
+	return *this;
 }
-frac* frac::operator*(frac& f)
+expression& frac::operator*(expression& secondOperand)
 {
+	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
 
-	resultDinominator = this->getDinominator()*f.getDinominator();
-	resultNumerator   = this->getNumerator()*f.getNumerator();
+	resultDinominator = this->getDinominator()*f->getDinominator();
+	resultNumerator   = this->getNumerator()*f->getNumerator();
 
-	frac *result = new frac(resultNumerator, resultDinominator);
-	return result;
+	numerator = resultNumerator;
+	dinominator = resultDinominator;
+	reduceFraction();
+	return *this;
 }
-frac* frac::operator/(frac& f)
+expression& frac::operator/(expression& secondOperand)
 {
+	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
 
-	resultDinominator = this->getDinominator()*f.getNumerator();
-	resultNumerator   = this->getNumerator()*f.getDinominator();
+	resultDinominator = this->getDinominator()*f->getNumerator();
+	resultNumerator   = this->getNumerator()*f->getDinominator();
 
-	frac *result = new frac(resultNumerator, resultDinominator);
-	return result;
+	numerator = resultNumerator;
+	dinominator = resultDinominator;
+	reduceFraction();
+	return *this;
+}
+
+expression& frac::operator-()
+{
+	numerator = -numerator;
+	return *this;
 }
 
 int frac::getLcm(int a, int b)
