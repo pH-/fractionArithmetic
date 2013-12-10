@@ -45,21 +45,27 @@ void expressionParser::shuntingYard()
 	for(int i=0; i<exprLen; i++)
 	{
 		char currChar = inFixExpression[i];
-		std::cout<<"currChar:"<<currChar<<std::endl;
 		if(isOperand(currChar))
 		{
 			outputQueue.push_back(currChar);
+			outputQueue.push_back(' ');
 			expectedOperatorType = expressionParser::BINARY;
 		}
 		else if(isOperator(currChar))
 		{
-			char operatorStackTop = operatorStack.top()[0];
-			while(isOperator(operatorStackTop) &&
-				  getPrecedence(currChar)<=getPrecedence(operatorStackTop))
+			if(!operatorStack.empty())
 			{
-				outputQueue.push_back(operatorStackTop);
-				operatorStack.pop();
-				operatorStackTop = operatorStack.top()[0];
+				char operatorStackTop = operatorStack.top()[0];
+				while(!operatorStack.empty() &&
+					   isOperator(operatorStackTop) &&
+					   getPrecedence(currChar)<=getPrecedence(operatorStackTop))
+				{
+					outputQueue.push_back(operatorStackTop);
+					outputQueue.push_back(' ');
+					operatorStack.pop();
+					if(!operatorStack.empty())
+						operatorStackTop = operatorStack.top()[0];
+				}
 			}
 			std::string currCharStrObj(1,currChar);
 			operatorStack.push(currCharStrObj);
@@ -81,6 +87,7 @@ void expressionParser::shuntingYard()
 					break;
 				}
 				outputQueue.push_back(topOperator);
+				outputQueue.push_back(' ');
 				operatorStack.pop();
 				topOperator=operatorStack.top()[0];
 			}
@@ -93,7 +100,8 @@ void expressionParser::shuntingYard()
 	while(!operatorStack.empty() && isOperator(operatorStack.top()[0]))
 	{
 		outputQueue.push_back(operatorStack.top()[0]);
-		outputQueue.pop_back();
+		outputQueue.push_back(' ');
+		operatorStack.pop();
 	}
 	postFixExpression = outputQueue;
 }
