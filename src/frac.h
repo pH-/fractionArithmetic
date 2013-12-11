@@ -23,6 +23,7 @@ public:
 	int   getNumerator();
 	void  reduceFraction();
 
+
 	frac* clone();
 	frac& operator+(frac& f);
 	frac& operator-(frac& f);

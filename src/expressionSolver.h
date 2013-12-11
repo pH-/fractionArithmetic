@@ -9,7 +9,6 @@
 #define EXPRESSIONSOLVER_H_
 #include <string>
 #include <stack>
-
 class frac;
 
 class expressionSolver {

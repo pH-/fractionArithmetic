@@ -23,8 +23,8 @@ frac::frac(frac& f): numerator(f.getNumerator()), dinominator(f.getDinominator()
 frac::frac(frac* f): numerator(f->getNumerator()), dinominator(f->getDinominator())
 {
 }
-frac::~frac() {
-	// TODO Auto-generated destructor stub
+frac::~frac()
+{
 }
 
 int frac::getNumerator()
@@ -41,11 +41,11 @@ void frac::display() const
 {
 	if(std::abs(dinominator)!=1)
 	{
-		if(numerator<dinominator)
+		if(std::abs(numerator)<std::abs(dinominator))
 			std::cout<<numerator<<"/"<<dinominator<<std::endl;
 		else
 		{
-			std::cout<<numerator/dinominator<<" "<<numerator%dinominator<<"/"<<dinominator<<std::endl;
+			std::cout<<numerator/dinominator<<" "<<std::abs(numerator)%dinominator<<"/"<<dinominator<<"  (Improper fraction converted to mixed form)"<<std::endl;
 		}
 	}
 	else

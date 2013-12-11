@@ -58,6 +58,10 @@ void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& pos
 		op2 = postFixExprStack.top();
 		postFixExprStack.pop();
 		op1 = postFixExprStack.top();
+		if(op2->getNumerator()==0)
+		{
+			throw "Invalid Expression: Divide by 0 error";
+		}
 		postFixExprStack.pop();
 		postFixExprStack.push(&(*op1/ *op2));
 		break;

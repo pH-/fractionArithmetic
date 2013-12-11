@@ -1,5 +1,5 @@
 /*
- * fracParser.cpp
+ *  expressionParser.cpp
  *
  *  Created on: Dec 7, 2013
  *      Author: phanindrabhagavatula
@@ -25,8 +25,6 @@ inFixExpression(exp)
 }
 
 expressionParser::~expressionParser() {
-//	delete(op1);
-//	delete(op2);
 }
 
 std::string expressionParser::getPostFixedExpression()
@@ -88,8 +86,7 @@ void expressionParser::shuntingYard()
 			{
 				if(operatorStack.empty())
 				{
-					std::cout<<"flag error and exit::::";
-					break;
+					throw "Invalid Expression: Unbalanced brackets";
 				}
 				outputQueue.push_back(topOperator);
 				outputQueue.push_back(' ');

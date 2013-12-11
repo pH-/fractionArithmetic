@@ -11,7 +11,6 @@
 #include "frac.h"
 #include "expressionParser.h"
 #include "expressionSolver.h"
-#include "frac.h"
 void terminator()
 {
 	std::cerr << "There was an unknown Exception\n";
@@ -22,27 +21,41 @@ int main() {
 
 	std::string expr;
 	std::cout << "Fraction Arithmetic" << std::endl;
-	std::cout << "Enter a binary fraction frac :"<<std::endl;
+	std::cout << "Restrictions:"<<std::endl;
+	std::cout << "1. Operands: integers or fractions."<<std::endl;
+	std::cout << "2. Fractions can be specified as 3/4"<<std::endl;
+	std::cout << "3. Operators Supported: /, *, +, -, unary -"<<std::endl;
+	std::cout << "4. To use a unary -(minus) please use brackes. Ex: (-12)"<<std::endl;
+
+	std::cout << "Enter an expression:"<<std::endl;
 	std::cin>>expr;
-	//std::cout<<expr<<std::endl;
-	expressionParser *frac = new expressionParser(expr);
+
+	expressionParser *fraction = new expressionParser(expr);
 
 	std::string postFixExpr;
 
 	try {
-		postFixExpr = frac->getPostFixedExpression();
+		postFixExpr = fraction->getPostFixedExpression();
 	}
 	catch(char const* e)
 	{
-		delete(frac);
+		delete(fraction);
 		std::cerr<<e<<std::endl;
 	}
 
 	expressionSolver *solver = new expressionSolver(postFixExpr);
-	frac* res = solver->solveExpression();
-	std::cout<<"result:"<<std::endl;
 
-//	res->display();
+	frac* res;
 
+	try {
+		res = solver->solveExpression();
+		std::cout<<"result:"<<std::endl;
+		res->display();
+	}
+	catch(char const* e)
+	{
+		delete(solver);
+		std::cerr<<e<<std::endl;
+	}
 	return 0;
 }
