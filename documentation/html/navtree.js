@@ -2,6 +2,8 @@ var NAVTREE =
 [
   [ "Fraction Expression Solver", "index.html", [
     [ "Classes", null, [
+      [ "Introduction", "index.html#intro_sec", null ],
+      [ "Usage", "index.html#Usage", null ],
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [

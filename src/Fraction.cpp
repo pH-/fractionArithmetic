@@ -11,6 +11,23 @@
 #include "frac.h"
 #include "expressionParser.h"
 #include "expressionSolver.h"
+
+/*! \mainpage Fraction Expression Solver
+ *
+ * \section intro_sec Introduction
+ *
+ * This code solves an arithmetic expression. It makes calculations in fractions
+ * and computes the result as a fraction. The Expression is parsed using Shunting Yard algorithm.
+ *
+ *
+ * \section Usage
+ * The following restrictions apply while providing an expression.
+ * 1. Operands can be Integers or Fractions
+ * 2. Fractions can be specified as 3/4
+ * 3. Operators Supported: /, *, +, -, unary -
+ * 4. To use a unary -(minus) please use brackes. Ex: (-12)
+ * 5. Spaces cannot be part of the expression.
+ */
 void terminator()
 {
 	std::cerr << "There was an unknown Exception\n";
