@@ -57,6 +57,9 @@ void expressionParser::shuntingYard()
 		}
 		else if(isOperator(currChar))
 		{
+			if(expectedOperatorType==expressionParser::NONE)
+				throw "Parse Error. Invalid operator usage";
+
 			while(!operatorStack.empty() &&
 				  isOperator(operatorStack.top()[0]) &&
 				  getPrecedence(currChar)<=getPrecedence(operatorStack.top()[0]))
@@ -70,6 +73,7 @@ void expressionParser::shuntingYard()
 				currChar = 'u';
 			std::string currCharStrObj(1,currChar);
 			operatorStack.push(currCharStrObj);
+			expectedOperatorType = expressionParser::NONE;
 		}
 		else if(currChar=='(')
 		{
@@ -97,13 +101,28 @@ void expressionParser::shuntingYard()
 				operatorStack.pop();
 			}
 		}
+		else if(currChar==' ')
+		{
+			std::cout<<"found a space"<<std::endl;
+		}
+		else
+		{
+			throw "Parse Error. Invalid character in input Expression";
+		}
 		prevChar = currChar;
 	}
-	while(!operatorStack.empty() && isOperator(operatorStack.top()[0]))
+	while(!operatorStack.empty())
 	{
-		outputQueue.push_back(operatorStack.top()[0]);
-		outputQueue.push_back(' ');
-		operatorStack.pop();
+		if(isOperator(operatorStack.top()[0]))
+		{
+			outputQueue.push_back(operatorStack.top()[0]);
+			outputQueue.push_back(' ');
+			operatorStack.pop();
+		}
+		else
+		{
+			throw "Parse Error. Unbalanced Brackets";
+		}
 	}
 	postFixExpression = outputQueue;
 }
@@ -122,74 +141,3 @@ int expressionParser::getPrecedence(char o)
 {
 	return operatorPrecedence[o];
 }
-//void expressionParser::displayFirstOperand() const
-//{
-//	op1->display();
-//}
-
-//void expressionParser::displaySecondOperand() const
-//{
-//	op2->display();
-//}
-
-//void expressionParser::displayOperator() const
-//{
-//	std::cout<<"operator:"<<oprtr<<std::endl;
-//}
-
-//frac* expressionParser::computeExpression()
-//{
-//	parseBinaryExpression();
-//	switch(oprtr)
-//	{
-//	case '+':
-//		return *op1+*op2;
-//	case '-':
-//		return *op1-*op2;
-//	case '*':
-//		return *op1 * *op2;
-//	case '/':
-//		return *op1/ *op2;
-//	default:
-//		return NULL;
-//	}
-//}
-//frac* expressionParser::getFractionFromString(std::string fractionStr)
-//{
-//	_DATATYPE_ numerator, dinominator;
-//
-//	size_t separatorPosition = fractionStr.find('\\');
-//	std::istringstream iss (fractionStr.substr(0,separatorPosition));
-//	iss>>numerator;
-//	iss.clear();
-//	iss.str(fractionStr.substr(separatorPosition+1, std::string::npos));
-//	iss>>dinominator;
-//	frac *fterm = new frac(numerator, dinominator);
-//	std::cout<<"fraction formed:";
-//	fterm->display();
-//	return fterm;
-//}
-//
-//void expressionParser::parseBinaryExpression()
-//{
-//	char operators[] = {'+', '-', '*', '/'};
-//	std::string operand1, operand2;
-//	size_t oprtrlocation;
-//	for(int i=0; i<4; i++)
-//	{
-//		oprtrlocation = expression.find(operators[i]);
-//		if(oprtrlocation!=std::string::npos)
-//		{
-//			std::istringstream iss (expression.substr(0,oprtrlocation));
-//			iss>>operand1;
-//			iss.clear();
-//			iss.str(expression.substr(oprtrlocation+1, std::string::npos));
-//			iss>>operand2;
-//			break;
-//		}
-//	}
-//
-//	op1 	= getFractionFromString(operand1);
-//	op2 	= getFractionFromString(operand2);
-//	oprtr 	= expression[oprtrlocation];
-//}

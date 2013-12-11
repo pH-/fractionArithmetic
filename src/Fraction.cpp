@@ -11,20 +11,38 @@
 #include "frac.h"
 #include "expressionParser.h"
 #include "expressionSolver.h"
-#include "expression.h"
-
+#include "frac.h"
+void terminator()
+{
+	std::cerr << "There was an unknown Exception\n";
+	abort();  // forces abnormal termination
+}
 int main() {
+	std::set_terminate (terminator);
+
 	std::string expr;
 	std::cout << "Fraction Arithmetic" << std::endl;
-	std::cout << "Enter a binary fraction expression :"<<std::endl;
+	std::cout << "Enter a binary fraction frac :"<<std::endl;
 	std::cin>>expr;
-	std::cout<<expr<<std::endl;
-	expressionParser *expression = new expressionParser(expr);
-	std::cout<<expression->getPostFixedExpression()<<std::endl;
+	//std::cout<<expr<<std::endl;
+	expressionParser *frac = new expressionParser(expr);
 
-	expressionSolver *solver = new expressionSolver(expression->getPostFixedExpression());
-	std::cout<<"result:";
-	solver->solveExpression()->display();
+	std::string postFixExpr;
+
+	try {
+		postFixExpr = frac->getPostFixedExpression();
+	}
+	catch(char const* e)
+	{
+		delete(frac);
+		std::cerr<<e<<std::endl;
+	}
+
+	expressionSolver *solver = new expressionSolver(postFixExpr);
+	frac* res = solver->solveExpression();
+	std::cout<<"result:"<<std::endl;
+
+//	res->display();
 
 	return 0;
 }

@@ -12,7 +12,7 @@
 #include <sstream>
 #include "frac.h"
 
-void printstack(std::stack<expression*> s )
+void printstack(std::stack<frac*> s )
 {
 	std::cout<<"stack:"<<std::endl;
 	while(!s.empty())
@@ -29,9 +29,9 @@ expressionSolver::~expressionSolver()
 {
 }
 
-expression*& expressionSolver::solveExpression()
+frac* expressionSolver::solveExpression()
 {
-	std::stack<expression*>	postFixExprStack;
+	std::stack<frac*>	postFixExprStack;
 	std::stringstream exprstream(postFixedExpression);
 	std::string currToken;
 	while(exprstream>>currToken)
@@ -41,17 +41,17 @@ expression*& expressionSolver::solveExpression()
 		else
 			pushOperandToStack(currToken, postFixExprStack);
 	}
-	expression *result = postFixExprStack.top();
+	frac *result = postFixExprStack.top()->clone();
 	postFixExprStack.pop();
 	return result;
 }
 
 
 
-void expressionSolver::useOperator(std::string currToken, std::stack<expression*>& postFixExprStack)
+void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& postFixExprStack)
 {
-	expression *op1;
-	expression *op2;
+	frac *op1;
+	frac *op2;
 	switch(currToken.c_str()[0])
 	{
 	case '/':
@@ -83,19 +83,19 @@ void expressionSolver::useOperator(std::string currToken, std::stack<expression*
 		postFixExprStack.push(&(*op1-*op2));
 		break;
 	case 'u':
-		expression *op1 = postFixExprStack.top();
+		frac *op1 = postFixExprStack.top();
 		postFixExprStack.pop();
 		postFixExprStack.push(&(-(*op1)));
 		break;
 	}
 }
 
-void expressionSolver::pushOperandToStack(std::string currToken, std::stack<expression*>& postFixExprStack)
+void expressionSolver::pushOperandToStack(std::string currToken, std::stack<frac*>& postFixExprStack)
 {
 	int operand;
 	std::stringstream optrss(currToken);
 	optrss>>operand;
-	expression *currOperand = new frac(operand,1);
+	frac *currOperand = new frac(operand,1);
 	postFixExprStack.push(currOperand);
 }
 bool expressionSolver::isOperator(std::string o)

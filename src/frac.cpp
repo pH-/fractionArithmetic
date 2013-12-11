@@ -20,6 +20,9 @@ frac::frac(int n, int d):numerator(n), dinominator(d)
 frac::frac(frac& f): numerator(f.getNumerator()), dinominator(f.getDinominator())
 {
 }
+frac::frac(frac* f): numerator(f->getNumerator()), dinominator(f->getDinominator())
+{
+}
 frac::~frac() {
 	// TODO Auto-generated destructor stub
 }
@@ -70,7 +73,11 @@ void frac::reduceFraction()
 		dinominator = std::abs(dinominator);
 	}
 }
-expression& frac::operator+(expression& secondOperand)
+frac* frac::clone()
+{
+	return new frac(*this);
+}
+frac& frac::operator+(frac& secondOperand)
 {
 	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
@@ -84,7 +91,7 @@ expression& frac::operator+(expression& secondOperand)
 	return *this;
 }
 
-expression& frac::operator-(expression& secondOperand)
+frac& frac::operator-(frac& secondOperand)
 {
 	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
@@ -97,7 +104,7 @@ expression& frac::operator-(expression& secondOperand)
 	reduceFraction();
 	return *this;
 }
-expression& frac::operator*(expression& secondOperand)
+frac& frac::operator*(frac& secondOperand)
 {
 	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
@@ -110,7 +117,7 @@ expression& frac::operator*(expression& secondOperand)
 	reduceFraction();
 	return *this;
 }
-expression& frac::operator/(expression& secondOperand)
+frac& frac::operator/(frac& secondOperand)
 {
 	frac *f = dynamic_cast<frac*> (&secondOperand);
 	int resultNumerator, resultDinominator;
@@ -124,7 +131,7 @@ expression& frac::operator/(expression& secondOperand)
 	return *this;
 }
 
-expression& frac::operator-()
+frac& frac::operator-()
 {
 	numerator = -numerator;
 	return *this;

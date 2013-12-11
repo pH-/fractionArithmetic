@@ -10,18 +10,18 @@
 #include <string>
 #include <stack>
 
-class expression;
+class frac;
 
 class expressionSolver {
 public:
 	expressionSolver(std::string expr);
 	virtual 		~expressionSolver();
-	expression*&	 	solveExpression();
+	frac*		 	solveExpression();
 private:  //private functions
 	bool 			isOperator(std::string o);
 	bool 			isOperand(std::string o);
-	void 			useOperator(std::string o, std::stack<expression*>& postFixExprStack);
-	void 			pushOperandToStack(std::string o, std::stack<expression*>& postFixExprStack);
+	void 			useOperator(std::string o, std::stack<frac*>& postFixExprStack);
+	void 			pushOperandToStack(std::string o, std::stack<frac*>& postFixExprStack);
 
 private:
 	std::string		postFixedExpression;

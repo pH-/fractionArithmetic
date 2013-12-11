@@ -8,29 +8,27 @@
 #ifndef FRAC_H_
 #define FRAC_H_
 
-#include "operandClass.h"
-
-class frac : public operandClass
+class frac
 {
 
 public:
 	frac(int n, int d);
 	frac(frac& f);
+	frac(frac* f);
 
 	~frac();
 
 	void  display() const;
-
-
 	int   getDinominator();
 	int   getNumerator();
-	void reduceFraction();
+	void  reduceFraction();
 
-	expression& operator+(expression& f);
-	expression& operator-(expression& f);
-	expression& operator*(expression& f);
-	expression& operator/(expression& f);
-	expression& operator-();
+	frac* clone();
+	frac& operator+(frac& f);
+	frac& operator-(frac& f);
+	frac& operator*(frac& f);
+	frac& operator/(frac& f);
+	frac& operator-();
 
 private:
 
