@@ -16,9 +16,9 @@ public:
 	expressionSolver(std::string expr);
 	virtual 		~expressionSolver();
 	frac*		 	solveExpression();
+
 private:  //private functions
 	bool 			isOperator(std::string o);
-	bool 			isOperand(std::string o);
 	void 			useOperator(std::string o, std::stack<frac*>& postFixExprStack);
 	void 			pushOperandToStack(std::string o, std::stack<frac*>& postFixExprStack);
 

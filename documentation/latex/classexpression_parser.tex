@@ -1,0 +1,139 @@
+\hypertarget{classexpression_parser}{\section{expression\-Parser Class Reference}
+\label{classexpression_parser}\index{expression\-Parser@{expression\-Parser}}
+}
+
+
+{\ttfamily \#include $<$expression\-Parser.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classexpression_parser_ae675c52633c8990b0aa955fd7d9e6338}{expression\-Parser} (std\-::string exp)
+\item 
+virtual \hyperlink{classexpression_parser_ade3e01d93233c908ee7ae8d6bec391f7}{$\sim$expression\-Parser} ()
+\item 
+std\-::string \hyperlink{classexpression_parser_a718ef8608ee8b606dba30b0f249e21a9}{get\-Post\-Fixed\-Expression} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classexpression_parser_a32095df887afef8d80a03f4a44701b5b}{operator\-Type} \{ \hyperlink{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba91e943f954b21df49669ecc73ce5d5a1}{N\-O\-N\-E}, 
+\hyperlink{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba5d04d7412603943afb27c772bfa42b37}{U\-N\-A\-R\-Y}, 
+\hyperlink{classexpression_parser_a32095df887afef8d80a03f4a44701b5bac1c46a7480aec9c85b567d0e2de99302}{B\-I\-N\-A\-R\-Y}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classexpression_parser_ace72d9f52de3444cf32bae02a3be57e9}{shunting\-Yard} ()
+\item 
+bool \hyperlink{classexpression_parser_a6978d31ef3bcb3d4b60a0c7d77947941}{is\-Operator} (char o)
+\item 
+bool \hyperlink{classexpression_parser_a9dd1d833d5e5684304b49d1b0d8d7916}{is\-Operand} (char o)
+\item 
+int \hyperlink{classexpression_parser_af02d5c59c29bac4f1c80b3eeeb41d85d}{get\-Precedence} (char o)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\-::map$<$ char, int $>$ \hyperlink{classexpression_parser_a7cff5468560616eadf8242d593d7f2fc}{operator\-Precedence\-Table}
+\item 
+enum \hyperlink{classexpression_parser_a32095df887afef8d80a03f4a44701b5b}{operator\-Type} \hyperlink{classexpression_parser_ab476557dbd05a4340329057317cb5175}{expected\-Operator\-Type}
+\item 
+std\-::string \hyperlink{classexpression_parser_a7b5cf82d367f3be9e9430cbbba7a3208}{in\-Fix\-Expression}
+\item 
+std\-::string \hyperlink{classexpression_parser_ae954010e5ba9d9ca5b8322f60d55dccc}{post\-Fix\-Expression}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classexpression_parser_a32095df887afef8d80a03f4a44701b5b}{\index{expression\-Parser@{expression\-Parser}!operator\-Type@{operator\-Type}}
+\index{operator\-Type@{operator\-Type}!expressionParser@{expression\-Parser}}
+\subsubsection[{operator\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf expression\-Parser\-::operator\-Type}\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_a32095df887afef8d80a03f4a44701b5b}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{N\-O\-N\-E@{N\-O\-N\-E}!expression\-Parser@{expression\-Parser}}\index{expression\-Parser@{expression\-Parser}!N\-O\-N\-E@{N\-O\-N\-E}}\item[{\em 
+\hypertarget{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba91e943f954b21df49669ecc73ce5d5a1}{N\-O\-N\-E}\label{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba91e943f954b21df49669ecc73ce5d5a1}
+}]\index{U\-N\-A\-R\-Y@{U\-N\-A\-R\-Y}!expression\-Parser@{expression\-Parser}}\index{expression\-Parser@{expression\-Parser}!U\-N\-A\-R\-Y@{U\-N\-A\-R\-Y}}\item[{\em 
+\hypertarget{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba5d04d7412603943afb27c772bfa42b37}{U\-N\-A\-R\-Y}\label{classexpression_parser_a32095df887afef8d80a03f4a44701b5ba5d04d7412603943afb27c772bfa42b37}
+}]\index{B\-I\-N\-A\-R\-Y@{B\-I\-N\-A\-R\-Y}!expression\-Parser@{expression\-Parser}}\index{expression\-Parser@{expression\-Parser}!B\-I\-N\-A\-R\-Y@{B\-I\-N\-A\-R\-Y}}\item[{\em 
+\hypertarget{classexpression_parser_a32095df887afef8d80a03f4a44701b5bac1c46a7480aec9c85b567d0e2de99302}{B\-I\-N\-A\-R\-Y}\label{classexpression_parser_a32095df887afef8d80a03f4a44701b5bac1c46a7480aec9c85b567d0e2de99302}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classexpression_parser_ae675c52633c8990b0aa955fd7d9e6338}{\index{expression\-Parser@{expression\-Parser}!expression\-Parser@{expression\-Parser}}
+\index{expression\-Parser@{expression\-Parser}!expressionParser@{expression\-Parser}}
+\subsubsection[{expression\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}expression\-Parser\-::expression\-Parser (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{exp}
+\end{DoxyParamCaption}
+)}}\label{classexpression_parser_ae675c52633c8990b0aa955fd7d9e6338}
+Constructor Stores the expression to be Parsed as class variable and creates an Operator precedence table as a map. \hypertarget{classexpression_parser_ade3e01d93233c908ee7ae8d6bec391f7}{\index{expression\-Parser@{expression\-Parser}!$\sim$expression\-Parser@{$\sim$expression\-Parser}}
+\index{$\sim$expression\-Parser@{$\sim$expression\-Parser}!expressionParser@{expression\-Parser}}
+\subsubsection[{$\sim$expression\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}expression\-Parser\-::$\sim$expression\-Parser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classexpression_parser_ade3e01d93233c908ee7ae8d6bec391f7}
+Destructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classexpression_parser_a718ef8608ee8b606dba30b0f249e21a9}{\index{expression\-Parser@{expression\-Parser}!get\-Post\-Fixed\-Expression@{get\-Post\-Fixed\-Expression}}
+\index{get\-Post\-Fixed\-Expression@{get\-Post\-Fixed\-Expression}!expressionParser@{expression\-Parser}}
+\subsubsection[{get\-Post\-Fixed\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string expression\-Parser\-::get\-Post\-Fixed\-Expression (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classexpression_parser_a718ef8608ee8b606dba30b0f249e21a9}
+Uses the infix Expression provided to the class to post\-Fixed expression using Shunting Yard algorithm. Creates a postfixed Expression as a string. \hypertarget{classexpression_parser_af02d5c59c29bac4f1c80b3eeeb41d85d}{\index{expression\-Parser@{expression\-Parser}!get\-Precedence@{get\-Precedence}}
+\index{get\-Precedence@{get\-Precedence}!expressionParser@{expression\-Parser}}
+\subsubsection[{get\-Precedence}]{\setlength{\rightskip}{0pt plus 5cm}int expression\-Parser\-::get\-Precedence (
+\begin{DoxyParamCaption}
+\item[{char}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_af02d5c59c29bac4f1c80b3eeeb41d85d}
+Gets precedence value of an operator \hypertarget{classexpression_parser_a9dd1d833d5e5684304b49d1b0d8d7916}{\index{expression\-Parser@{expression\-Parser}!is\-Operand@{is\-Operand}}
+\index{is\-Operand@{is\-Operand}!expressionParser@{expression\-Parser}}
+\subsubsection[{is\-Operand}]{\setlength{\rightskip}{0pt plus 5cm}bool expression\-Parser\-::is\-Operand (
+\begin{DoxyParamCaption}
+\item[{char}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_a9dd1d833d5e5684304b49d1b0d8d7916}
+Checks if current operator is an operand \hypertarget{classexpression_parser_a6978d31ef3bcb3d4b60a0c7d77947941}{\index{expression\-Parser@{expression\-Parser}!is\-Operator@{is\-Operator}}
+\index{is\-Operator@{is\-Operator}!expressionParser@{expression\-Parser}}
+\subsubsection[{is\-Operator}]{\setlength{\rightskip}{0pt plus 5cm}bool expression\-Parser\-::is\-Operator (
+\begin{DoxyParamCaption}
+\item[{char}]{o}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_a6978d31ef3bcb3d4b60a0c7d77947941}
+Checks of current token is an operator \hypertarget{classexpression_parser_ace72d9f52de3444cf32bae02a3be57e9}{\index{expression\-Parser@{expression\-Parser}!shunting\-Yard@{shunting\-Yard}}
+\index{shunting\-Yard@{shunting\-Yard}!expressionParser@{expression\-Parser}}
+\subsubsection[{shunting\-Yard}]{\setlength{\rightskip}{0pt plus 5cm}void expression\-Parser\-::shunting\-Yard (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_ace72d9f52de3444cf32bae02a3be57e9}
+Shunting Yard algorithm for infix to postfix conversion of expression given a set of operators and their precedence, associativity. For current exercise I considered all operators as left associative. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classexpression_parser_ab476557dbd05a4340329057317cb5175}{\index{expression\-Parser@{expression\-Parser}!expected\-Operator\-Type@{expected\-Operator\-Type}}
+\index{expected\-Operator\-Type@{expected\-Operator\-Type}!expressionParser@{expression\-Parser}}
+\subsubsection[{expected\-Operator\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf operator\-Type} expression\-Parser\-::expected\-Operator\-Type\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_ab476557dbd05a4340329057317cb5175}
+\hypertarget{classexpression_parser_a7b5cf82d367f3be9e9430cbbba7a3208}{\index{expression\-Parser@{expression\-Parser}!in\-Fix\-Expression@{in\-Fix\-Expression}}
+\index{in\-Fix\-Expression@{in\-Fix\-Expression}!expressionParser@{expression\-Parser}}
+\subsubsection[{in\-Fix\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string expression\-Parser\-::in\-Fix\-Expression\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_a7b5cf82d367f3be9e9430cbbba7a3208}
+\hypertarget{classexpression_parser_a7cff5468560616eadf8242d593d7f2fc}{\index{expression\-Parser@{expression\-Parser}!operator\-Precedence\-Table@{operator\-Precedence\-Table}}
+\index{operator\-Precedence\-Table@{operator\-Precedence\-Table}!expressionParser@{expression\-Parser}}
+\subsubsection[{operator\-Precedence\-Table}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$char,int$>$ expression\-Parser\-::operator\-Precedence\-Table\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_a7cff5468560616eadf8242d593d7f2fc}
+\hypertarget{classexpression_parser_ae954010e5ba9d9ca5b8322f60d55dccc}{\index{expression\-Parser@{expression\-Parser}!post\-Fix\-Expression@{post\-Fix\-Expression}}
+\index{post\-Fix\-Expression@{post\-Fix\-Expression}!expressionParser@{expression\-Parser}}
+\subsubsection[{post\-Fix\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string expression\-Parser\-::post\-Fix\-Expression\hspace{0.3cm}{\ttfamily [private]}}}\label{classexpression_parser_ae954010e5ba9d9ca5b8322f60d55dccc}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Users/phanindrabhagavatula/\-Everything Useful/eclipse/\-Fraction/src/\hyperlink{expression_parser_8h}{expression\-Parser.\-h}\item 
+/\-Users/phanindrabhagavatula/\-Everything Useful/eclipse/\-Fraction/src/\hyperlink{expression_parser_8cpp}{expression\-Parser.\-cpp}\end{DoxyCompactItemize}

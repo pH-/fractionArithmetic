@@ -10,6 +10,11 @@
 #include <iostream>
 #include <stack>
 
+/**
+ * Constructor
+ * Stores the expression to be Parsed as class variable and
+ * creates an Operator precedence table as a map.
+ */
 expressionParser::expressionParser(std::string exp) :
 expectedOperatorType(expressionParser::UNARY),
 inFixExpression(exp)
@@ -18,15 +23,21 @@ inFixExpression(exp)
 	std::pair<char, int> p2('*',2);
 	std::pair<char, int> p3('+',1);
 	std::pair<char, int> p4('-',1);
-	operatorPrecedence.insert(p1);
-	operatorPrecedence.insert(p2);
-	operatorPrecedence.insert(p3);
-	operatorPrecedence.insert(p4);
+	operatorPrecedenceTable.insert(p1);
+	operatorPrecedenceTable.insert(p2);
+	operatorPrecedenceTable.insert(p3);
+	operatorPrecedenceTable.insert(p4);
 }
-
+/**
+ * Destructor
+ */
 expressionParser::~expressionParser() {
 }
 
+/**
+ * Uses the infix Expression provided to the class to postFixed expression using Shunting Yard algorithm.
+ * Creates a postfixed Expression as a string.
+ */
 std::string expressionParser::getPostFixedExpression()
 {
 	if(postFixExpression.empty())
@@ -35,6 +46,10 @@ std::string expressionParser::getPostFixedExpression()
 	return postFixExpression;
 }
 
+/**
+ * Shunting Yard algorithm for infix to postfix conversion of expression given a set of operators
+ * and their precedence, associativity. For current exercise I considered all operators as left associative.
+ */
 void expressionParser::shuntingYard()
 {
 	std::string outputQueue;
@@ -124,17 +139,24 @@ void expressionParser::shuntingYard()
 	postFixExpression = outputQueue;
 }
 
+/**
+ * Checks of current token is an operator
+ */
 bool expressionParser::isOperator(char o)
 {
 	return (o=='+' || o=='-' || o== '*' || o=='/');
 }
-
+/**
+ * Checks if current operator is an operand
+ */
 bool expressionParser::isOperand(char o)
 {
 	return (o>='0' && o<='9');
 }
-
+/**
+ * Gets precedence value of an operator
+ */
 int expressionParser::getPrecedence(char o)
 {
-	return operatorPrecedence[o];
+	return operatorPrecedenceTable[o];
 }

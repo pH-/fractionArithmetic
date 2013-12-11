@@ -5,14 +5,13 @@
  *      Author: phanindrabhagavatula
  */
 
-#ifndef FRACPARSER_H_
-#define FRACPARSER_H_
+#ifndef EXPRESSIONPARSER_H_
+#define EXPRESSIONPARSER_H_
 
 #include <string>
 #include <map>
 
 #include "frac.h"
-#define _DATATYPE_ int
 
 class expressionParser {
 
@@ -21,18 +20,11 @@ public:
 	virtual 	~expressionParser();
 	std::string getPostFixedExpression();
 
-	//frac*		 computeExpression();
-	//void		 displayFirstOperand() const;
-	//void		 displaySecondOperand() const;
-	//void	     displayOperator()const;
-
 private:
 	void 		shuntingYard();
 	bool     	isOperator(char o);
 	bool		isOperand(char o);
 	int			getPrecedence(char o);
-//	void 		 parseBinaryExpression();
-//	frac*		 getFractionFromString(std::string fractionStr);
 
 private:
 	enum operatorType
@@ -42,7 +34,7 @@ private:
 		BINARY
 	};
 
-	std::map<char,int> operatorPrecedence;
+	std::map<char,int> operatorPrecedenceTable;
 
 	enum operatorType expectedOperatorType;
 
@@ -50,4 +42,4 @@ private:
 	std::string 	postFixExpression;
 };
 
-#endif /* FRACPARSER_H_ */
+#endif /* EXPRESSIONPARSER_H_ */

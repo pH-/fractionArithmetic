@@ -12,23 +12,23 @@
 #include <sstream>
 #include "frac.h"
 
-void printstack(std::stack<frac*> s )
-{
-	std::cout<<"stack:"<<std::endl;
-	while(!s.empty())
-	{
-		s.top()->display();
-		s.pop();
-	}
-}
+/**
+ * Constructor
+ */
 expressionSolver::expressionSolver(std::string expr):postFixedExpression(expr)
 {
 }
-
+/**
+ * Destructor
+ */
 expressionSolver::~expressionSolver()
 {
 }
 
+/**
+ * Solves a Post Fix Expression. It parses the Postfix expression string, creates objects
+ * for operands and uses a stack to keep track of results.
+ */
 frac* expressionSolver::solveExpression()
 {
 	std::stack<frac*>	postFixExprStack;
@@ -47,7 +47,10 @@ frac* expressionSolver::solveExpression()
 }
 
 
-
+/**
+ * Uses Operator
+ * If current token parsed is an operator, pulls required number of operands from stack and operates on them.
+ */
 void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& postFixExprStack)
 {
 	frac *op1;
@@ -94,6 +97,11 @@ void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& pos
 	}
 }
 
+/**
+ * Push Operand to Stack.
+ * This function converts each integer obtained to a fraction class object. This facilitates
+ * use of operators on operands without checking if its a fraction or an integer.
+ */
 void expressionSolver::pushOperandToStack(std::string currToken, std::stack<frac*>& postFixExprStack)
 {
 	int operand;
@@ -102,6 +110,9 @@ void expressionSolver::pushOperandToStack(std::string currToken, std::stack<frac
 	frac *currOperand = new frac(operand,1);
 	postFixExprStack.push(currOperand);
 }
+/**
+ * Checks if current token is an operator
+ */
 bool expressionSolver::isOperator(std::string o)
 {
 	return (o.c_str()[0]=='+' ||
@@ -109,10 +120,4 @@ bool expressionSolver::isOperator(std::string o)
 			o.c_str()[0]=='*' ||
 			o.c_str()[0]=='/' ||
 			o.c_str()[0]=='u');
-}
-
-bool isOperand(std::string o)
-{
-	return (o.c_str()[0]>='0' &&
-			o.c_str()[0]<='9');
 }

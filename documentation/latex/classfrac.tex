@@ -1,0 +1,202 @@
+\hypertarget{classfrac}{\section{frac Class Reference}
+\label{classfrac}\index{frac@{frac}}
+}
+
+
+{\ttfamily \#include $<$frac.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classfrac_a051365bd6877cb87bc310c45fc90b28c}{frac} (int n, int d)
+\item 
+\hyperlink{classfrac_a99fdb2273c3f9de4efa6c5cc5f8174b0}{frac} (\hyperlink{classfrac}{frac} \&f)
+\item 
+\hyperlink{classfrac_a424fb4fa68e8b33248986a8954567e26}{frac} (\hyperlink{classfrac}{frac} $\ast$f)
+\item 
+\hyperlink{classfrac_add2e0f622517541c3f892dbaedad678c}{$\sim$frac} ()
+\item 
+void \hyperlink{classfrac_abdb433b58cfff1fc94ed3eb149555b5c}{display} () const 
+\item 
+int \hyperlink{classfrac_aa47cf219cad50f87599ad7a56334c5bc}{get\-Dinominator} ()
+\item 
+int \hyperlink{classfrac_af7fdff849611b59e0ca1afa87b05d433}{get\-Numerator} ()
+\item 
+void \hyperlink{classfrac_a9b63fe9aaeb67fb3a939f9ec22e17bc7}{reduce\-Fraction} ()
+\item 
+\hyperlink{classfrac}{frac} $\ast$ \hyperlink{classfrac_a3cebc2a3d23a8ecf175d7d2cc02e8a77}{clone} ()
+\item 
+\hyperlink{classfrac}{frac} \& \hyperlink{classfrac_a89a1b822d370c916106594d5f2267493}{operator+} (\hyperlink{classfrac}{frac} \&f)
+\item 
+\hyperlink{classfrac}{frac} \& \hyperlink{classfrac_ad1f48e0b2c94873016bd895177f7887c}{operator-\/} (\hyperlink{classfrac}{frac} \&f)
+\item 
+\hyperlink{classfrac}{frac} \& \hyperlink{classfrac_a807ad5aa49d46adab972e087496c0a72}{operator$\ast$} (\hyperlink{classfrac}{frac} \&f)
+\item 
+\hyperlink{classfrac}{frac} \& \hyperlink{classfrac_a12cf51a8127c7495958e7dcdd5cf28af}{operator/} (\hyperlink{classfrac}{frac} \&f)
+\item 
+\hyperlink{classfrac}{frac} \& \hyperlink{classfrac_afe39ee9c2d76646d0e48fcb60716883b}{operator-\/} ()
+\begin{DoxyCompactList}\small\item\em unary -\/ operator overload \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classfrac_a3847d4874ea907a89936253cc33d3147}{get\-Lcm} (int dinominator1, int dinominator2)
+\begin{DoxyCompactList}\small\item\em Get L\-C\-M. \end{DoxyCompactList}\item 
+int \hyperlink{classfrac_a353b9106240ea62a8ab38237f17a113e}{get\-Gcd} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Get G\-C\-D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classfrac_ac9ddb6a305789ceb081a3235dcb54b66}{numerator}
+\item 
+int \hyperlink{classfrac_a1a245c07a3963fe0e88233d9587f5f69}{dinominator}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classfrac_a051365bd6877cb87bc310c45fc90b28c}{\index{frac@{frac}!frac@{frac}}
+\index{frac@{frac}!frac@{frac}}
+\subsubsection[{frac}]{\setlength{\rightskip}{0pt plus 5cm}frac\-::frac (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{int}]{d}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a051365bd6877cb87bc310c45fc90b28c}
+Constructs Fraction
+
+The function creates the fraction object and stores it in its reduced form. \hypertarget{classfrac_a99fdb2273c3f9de4efa6c5cc5f8174b0}{\index{frac@{frac}!frac@{frac}}
+\index{frac@{frac}!frac@{frac}}
+\subsubsection[{frac}]{\setlength{\rightskip}{0pt plus 5cm}frac\-::frac (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} \&}]{f}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a99fdb2273c3f9de4efa6c5cc5f8174b0}
+Copy Constructor\-: Copies and creates a frac object using reference to frac object \hypertarget{classfrac_a424fb4fa68e8b33248986a8954567e26}{\index{frac@{frac}!frac@{frac}}
+\index{frac@{frac}!frac@{frac}}
+\subsubsection[{frac}]{\setlength{\rightskip}{0pt plus 5cm}frac\-::frac (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a424fb4fa68e8b33248986a8954567e26}
+Copy Constructor\-: Copies and creates a frac object using pointer to another frac object \hypertarget{classfrac_add2e0f622517541c3f892dbaedad678c}{\index{frac@{frac}!$\sim$frac@{$\sim$frac}}
+\index{$\sim$frac@{$\sim$frac}!frac@{frac}}
+\subsubsection[{$\sim$frac}]{\setlength{\rightskip}{0pt plus 5cm}frac\-::$\sim$frac (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_add2e0f622517541c3f892dbaedad678c}
+Destructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classfrac_a3cebc2a3d23a8ecf175d7d2cc02e8a77}{\index{frac@{frac}!clone@{clone}}
+\index{clone@{clone}!frac@{frac}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} $\ast$ frac\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a3cebc2a3d23a8ecf175d7d2cc02e8a77}
+Clones an object \hypertarget{classfrac_abdb433b58cfff1fc94ed3eb149555b5c}{\index{frac@{frac}!display@{display}}
+\index{display@{display}!frac@{frac}}
+\subsubsection[{display}]{\setlength{\rightskip}{0pt plus 5cm}void frac\-::display (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classfrac_abdb433b58cfff1fc94ed3eb149555b5c}
+The function displays the fraction in proper form. An improper fraction is converted to mixed form \hypertarget{classfrac_aa47cf219cad50f87599ad7a56334c5bc}{\index{frac@{frac}!get\-Dinominator@{get\-Dinominator}}
+\index{get\-Dinominator@{get\-Dinominator}!frac@{frac}}
+\subsubsection[{get\-Dinominator}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::get\-Dinominator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_aa47cf219cad50f87599ad7a56334c5bc}
+Retrieves Dinominator \hypertarget{classfrac_a353b9106240ea62a8ab38237f17a113e}{\index{frac@{frac}!get\-Gcd@{get\-Gcd}}
+\index{get\-Gcd@{get\-Gcd}!frac@{frac}}
+\subsubsection[{get\-Gcd}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::get\-Gcd (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{int}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classfrac_a353b9106240ea62a8ab38237f17a113e}
+
+
+Get G\-C\-D. 
+
+\hypertarget{classfrac_a3847d4874ea907a89936253cc33d3147}{\index{frac@{frac}!get\-Lcm@{get\-Lcm}}
+\index{get\-Lcm@{get\-Lcm}!frac@{frac}}
+\subsubsection[{get\-Lcm}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::get\-Lcm (
+\begin{DoxyParamCaption}
+\item[{int}]{a, }
+\item[{int}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classfrac_a3847d4874ea907a89936253cc33d3147}
+
+
+Get L\-C\-M. 
+
+\hypertarget{classfrac_af7fdff849611b59e0ca1afa87b05d433}{\index{frac@{frac}!get\-Numerator@{get\-Numerator}}
+\index{get\-Numerator@{get\-Numerator}!frac@{frac}}
+\subsubsection[{get\-Numerator}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::get\-Numerator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_af7fdff849611b59e0ca1afa87b05d433}
+Retrieves Numerator \hypertarget{classfrac_a807ad5aa49d46adab972e087496c0a72}{\index{frac@{frac}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!frac@{frac}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} \& frac\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} \&}]{second\-Operand}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a807ad5aa49d46adab972e087496c0a72}
+This function multiplies two fractions and modifies the first operand to the result \hypertarget{classfrac_a89a1b822d370c916106594d5f2267493}{\index{frac@{frac}!operator+@{operator+}}
+\index{operator+@{operator+}!frac@{frac}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} \& frac\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} \&}]{second\-Operand}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a89a1b822d370c916106594d5f2267493}
+This function adds two fractions and modifies the first operand to the result \hypertarget{classfrac_ad1f48e0b2c94873016bd895177f7887c}{\index{frac@{frac}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!frac@{frac}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} \& frac\-::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} \&}]{second\-Operand}
+\end{DoxyParamCaption}
+)}}\label{classfrac_ad1f48e0b2c94873016bd895177f7887c}
+This function subtracts second fraction from first and modifies the first operand to the result \hypertarget{classfrac_afe39ee9c2d76646d0e48fcb60716883b}{\index{frac@{frac}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!frac@{frac}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} \& frac\-::operator-\/ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_afe39ee9c2d76646d0e48fcb60716883b}
+
+
+unary -\/ operator overload 
+
+This function negates the fraction (argument) \hypertarget{classfrac_a12cf51a8127c7495958e7dcdd5cf28af}{\index{frac@{frac}!operator/@{operator/}}
+\index{operator/@{operator/}!frac@{frac}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf frac} \& frac\-::operator/ (
+\begin{DoxyParamCaption}
+\item[{{\bf frac} \&}]{second\-Operand}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a12cf51a8127c7495958e7dcdd5cf28af}
+This function divides first fraction by second and modifies the first operand to the result \hypertarget{classfrac_a9b63fe9aaeb67fb3a939f9ec22e17bc7}{\index{frac@{frac}!reduce\-Fraction@{reduce\-Fraction}}
+\index{reduce\-Fraction@{reduce\-Fraction}!frac@{frac}}
+\subsubsection[{reduce\-Fraction}]{\setlength{\rightskip}{0pt plus 5cm}void frac\-::reduce\-Fraction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classfrac_a9b63fe9aaeb67fb3a939f9ec22e17bc7}
+The function reduces a fraction to its lowest form by dividing both numerator and dinominator by their G\-C\-D. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classfrac_a1a245c07a3963fe0e88233d9587f5f69}{\index{frac@{frac}!dinominator@{dinominator}}
+\index{dinominator@{dinominator}!frac@{frac}}
+\subsubsection[{dinominator}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::dinominator\hspace{0.3cm}{\ttfamily [private]}}}\label{classfrac_a1a245c07a3963fe0e88233d9587f5f69}
+\hypertarget{classfrac_ac9ddb6a305789ceb081a3235dcb54b66}{\index{frac@{frac}!numerator@{numerator}}
+\index{numerator@{numerator}!frac@{frac}}
+\subsubsection[{numerator}]{\setlength{\rightskip}{0pt plus 5cm}int frac\-::numerator\hspace{0.3cm}{\ttfamily [private]}}}\label{classfrac_ac9ddb6a305789ceb081a3235dcb54b66}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/\-Users/phanindrabhagavatula/\-Everything Useful/eclipse/\-Fraction/src/\hyperlink{frac_8h}{frac.\-h}\item 
+/\-Users/phanindrabhagavatula/\-Everything Useful/eclipse/\-Fraction/src/\hyperlink{frac_8cpp}{frac.\-cpp}\end{DoxyCompactItemize}

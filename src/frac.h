@@ -31,13 +31,13 @@ public:
 	frac& operator/(frac& f);
 	frac& operator-();
 
-private:
+private: //private functions
 
 	int  getLcm(int dinominator1, int dinominator2);
 	int  getGcd(int a, int b);
 private:
-	int numerator;
-	int dinominator;
+	int  numerator;
+	int  dinominator;
 
 };
 
