@@ -9,18 +9,19 @@
 #define EXPRESSIONSOLVER_H_
 #include <string>
 #include <stack>
+#include "boost/shared_ptr.hpp"
 class frac;
-
+typedef boost::shared_ptr<frac> fracSharedPtr;
 class expressionSolver {
 public:
 	expressionSolver(std::string expr);
 	virtual 		~expressionSolver();
-	frac*		 	solveExpression();
+	fracSharedPtr 	solveExpression();
 
 private:  //private functions
 	bool 			isOperator(std::string o);
-	void 			useOperator(std::string o, std::stack<frac*>& postFixExprStack);
-	void 			pushOperandToStack(std::string o, std::stack<frac*>& postFixExprStack);
+	void 			useOperator(std::string o, std::stack<fracSharedPtr>& postFixExprStack);
+	void 			pushOperandToStack(std::string o, std::stack<fracSharedPtr>& postFixExprStack);
 
 private:
 	std::string		postFixedExpression;

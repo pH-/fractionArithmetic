@@ -11,6 +11,8 @@
 #include <vector>
 #include <sstream>
 #include "frac.h"
+#include "boost/make_shared.hpp"
+
 
 /**
  * Constructor
@@ -29,9 +31,9 @@ expressionSolver::~expressionSolver()
  * Solves a Post Fix Expression. It parses the Postfix expression string, creates objects
  * for operands and uses a stack to keep track of results.
  */
-frac* expressionSolver::solveExpression()
+fracSharedPtr expressionSolver::solveExpression()
 {
-	std::stack<frac*>	postFixExprStack;
+	std::stack<fracSharedPtr>	postFixExprStack;
 	std::stringstream exprstream(postFixedExpression);
 	std::string currToken;
 	while(exprstream>>currToken)
@@ -41,7 +43,7 @@ frac* expressionSolver::solveExpression()
 		else
 			pushOperandToStack(currToken, postFixExprStack);
 	}
-	frac *result = postFixExprStack.top()->clone();
+	fracSharedPtr result = boost::make_shared<frac>(postFixExprStack.top()->clone());
 	postFixExprStack.pop();
 	return result;
 }
@@ -51,10 +53,10 @@ frac* expressionSolver::solveExpression()
  * Uses Operator
  * If current token parsed is an operator, pulls required number of operands from stack and operates on them.
  */
-void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& postFixExprStack)
+void expressionSolver::useOperator(std::string currToken, std::stack<fracSharedPtr>& postFixExprStack)
 {
-	frac *op1;
-	frac *op2;
+	fracSharedPtr op1;
+	fracSharedPtr op2;
 	switch(currToken.c_str()[0])
 	{
 	case '/':
@@ -66,33 +68,33 @@ void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& pos
 			throw "Invalid Expression: Divide by 0 error";
 		}
 		postFixExprStack.pop();
-		postFixExprStack.push(&(*op1/ *op2));
+		postFixExprStack.push(boost::make_shared<frac>(&(*op1/ *op2)));
 		break;
 	case '*':
 		op2 = postFixExprStack.top();
 		postFixExprStack.pop();
 		op1 = postFixExprStack.top();
 		postFixExprStack.pop();
-		postFixExprStack.push(&(*op1**op2));
+		postFixExprStack.push(boost::make_shared<frac>(&(*op1**op2)));
 		break;
 	case '+':
 		op2 = postFixExprStack.top();
 		postFixExprStack.pop();
 		op1 = postFixExprStack.top();
 		postFixExprStack.pop();
-		postFixExprStack.push(&(*op1+*op2));
+		postFixExprStack.push(boost::make_shared<frac>(&(*op1+*op2)));
 		break;
 	case '-':
 		op2 = postFixExprStack.top();
 		postFixExprStack.pop();
 		op1 = postFixExprStack.top();
 		postFixExprStack.pop();
-		postFixExprStack.push(&(*op1-*op2));
+		postFixExprStack.push(boost::make_shared<frac>(&(*op1-*op2)));
 		break;
 	case 'u':
-		frac *op1 = postFixExprStack.top();
+		fracSharedPtr op1 = postFixExprStack.top();
 		postFixExprStack.pop();
-		postFixExprStack.push(&(-(*op1)));
+		postFixExprStack.push(boost::make_shared<frac>(&(-(*op1))));
 		break;
 	}
 }
@@ -102,12 +104,12 @@ void expressionSolver::useOperator(std::string currToken, std::stack<frac*>& pos
  * This function converts each integer obtained to a fraction class object. This facilitates
  * use of operators on operands without checking if its a fraction or an integer.
  */
-void expressionSolver::pushOperandToStack(std::string currToken, std::stack<frac*>& postFixExprStack)
+void expressionSolver::pushOperandToStack(std::string currToken, std::stack<fracSharedPtr>& postFixExprStack)
 {
 	int operand;
 	std::stringstream optrss(currToken);
 	optrss>>operand;
-	frac *currOperand = new frac(operand,1);
+	fracSharedPtr currOperand = fracSharedPtr(new frac(operand,1));
 	postFixExprStack.push(currOperand);
 }
 /**

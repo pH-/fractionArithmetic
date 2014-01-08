@@ -12,6 +12,10 @@
 #include "expressionParser.h"
 #include "expressionSolver.h"
 
+
+typedef boost::shared_ptr<frac> fracSharedPtr;
+
+
 /*! \mainpage Fraction Expression Solver
  *
  * \section intro_sec Introduction
@@ -62,12 +66,12 @@ int main() {
 
 	expressionSolver *solver = new expressionSolver(postFixExpr);
 
-	frac* res;
-
+//	frac* res;
+	fracSharedPtr result;
 	try {
-		res = solver->solveExpression();
+		result = solver->solveExpression();
 		std::cout<<"result:"<<std::endl;
-		res->display();
+		result->display();
 	}
 	catch(char const* e)
 	{
